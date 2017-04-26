@@ -31,23 +31,23 @@ int main()
 	*/
 	std::ifstream combinaciones("elements.dat");
 	std::string line;
-	std::string value;
-	std::string key1;
-	std::string key2;
-	bool signo = false;
-	std::vector<char> val;
 
 	while (!combinaciones.eof()) {				// Comprova que no hagi arribat al final de l'arxiu
 	
 		getline(combinaciones, line);
-		std::vector<char> buffer(line.begin(), line.end());	// Em passa el String a un vector de chars
-		for (std::string::iterator it = line.begin(); it != line.end(); ++it) {
-			do {										//esto de aqui no funciona, hay que hacer el for para que leea char por char y que controle si es un = o no
-				val.push_back(*it);
-			} while (*it != '=');
-			std::string valu(val.begin(), val.end());
-			std::cout << valu << std::endl;
-		}
+		std::size_t equal = line.find("=");
+		std::size_t plus = line.find("+");
+		std::string value = line.substr(0, equal);			// Crea un substring des del principi fins a l'=
+		std::string key1 = line.substr(equal, plus);		// Crea un substring des de l'= fins al +
+		std::string key2 = line.substr(plus);				// Crea un substring des del + fins al final
+		
+		std::vector<char> buffval (value.begin(), value.end());	// Em passa el String a un vector de chars
+		std::vector<char> buffkey1 (key1.begin(), key1.end());
+		std::vector<char> buffkey2 (key2.begin(), key2.end());
+
+		// Aixo passa el vector a string un altre cop
+		std::string valu(buffval.begin(), buffval.end());
+		std::cout << valu << std::endl;
 		/*
 		for (std::vector<char>::iterator it = buffer.begin(); it != buffer.end(); ++it) {		// iterador para cada elemento del vector
 
