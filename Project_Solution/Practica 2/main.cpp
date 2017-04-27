@@ -17,6 +17,9 @@ struct std::hash<std::pair<std::string, std::string>>
 
 int main()
 {
+	PlayerElements Ele;
+	Ele.addElements("Steam");
+	
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
 	std::ifstream combinaciones("elements.dat");
 	std::string line;
@@ -41,6 +44,8 @@ int main()
 		c++;
 	}
 	std::cout << std::endl;
+
+
 
 	return 0;
 }
