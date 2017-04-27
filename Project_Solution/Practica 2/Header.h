@@ -1,0 +1,1 @@
+std::string delUnnecessary(std::string &str);
