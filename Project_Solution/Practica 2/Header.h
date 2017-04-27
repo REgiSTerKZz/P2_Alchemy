@@ -1,3 +1,2 @@
 #pragma once
-#include <string>
-std::string delUnnecessary(std::string &str);
+std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets(std::unordered_map<std::pair<std::string, std::string>, std::string> A);

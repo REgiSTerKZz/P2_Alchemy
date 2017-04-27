@@ -1,67 +1,43 @@
 #include <iostream>
+#include <string>
 #include <map>
+#include <unordered_map>
 #include <fstream>
 #include <vector>
 #include "Header.h"
 
-
-
-int main()
+template<>
+struct std::hash<std::pair<std::string, std::string>>
 {
-	/*
+	size_t operator()(const std::pair<std::string, std::string> & p) const {
+		return ((hash<std::string>()(p.first) ^ (hash<std::string>()(p.second) << 1) >> 1));
+	}
+};
 
-	CODE INSTRUCCIONS
-	--------------------------------------------------------------------------------------------------------------
-	Llegeix una linea de l'arxiu elements.dat i ho passa a un string (line),
-	Es passa l'String a un vector de chars per llegir char a char.
-	Anem afegint els chars que llegeixi a un vector fins que arriba a un "=".
-	si passa aixo, canviem el vector i ho repetin fins a un "+".
-	El tercer vector arribara fins al "\n"
-	
-	Un cop tinguem els res vectors separats, eliminarem els espais en blanc,
-	(un for del final cap al principi que elimini els espais propers als signes de split)
-	un cop hageuem tret els espais passarem els vectors a strings;
-	.........
-	std::vector<char> v;
-	std::string str(v.begin(),v.end());
-	.........
-	Quan ja tinguem els tres Strings els passarem a les posicions del unordered map per tal d'organitzarlos.
-	--------------------------------------------------------------------------------------------------------------
-	
-	*/
-	std::ifstream combinaciones("elements.dat", std::ios::in|std::ios::beg);
+std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets(std::unordered_map<std::pair<std::string, std::string>, std::string> &A) {
+	std::ifstream combinaciones("elements.dat");
 	std::string line;
 
-	while (!combinaciones.eof()) {				// Comprova que no hagi arribat al final de l'arxiu
+	while (!combinaciones.eof()) {								// Comprova que no hagi arribat al final de l'arxiu
+		getline(combinaciones, line);							// Agafa la linea sencera fins al "\n"
 
-		getline(combinaciones, line);
 		std::size_t equal = line.find("=");
 		std::string value = line.substr(0, equal - 1);			// Crea un substring des del principi fins a l'=
-		std::string keys = line.substr(equal + 1);			// String de les dues keys
+		std::string keys = line.substr(equal + 1);				// String de les dues keys
 		std::size_t plus = keys.find("+");
-		std::string key1 = keys.substr(1, plus - 1);
+		std::string key1 = keys.substr(1, plus - 1);			// Separa les keys per el signe "+"
 		std::string key2 = keys.substr(plus + 2);
 
 
-		std::cout << value << std::endl;
-		std::cout << key1 << std::endl;
-		std::cout << key2 << std::endl;
-	
+		A.insert({ { key1,key2 }, { value } });
+
 	}
-	return 0;
+	return A;
 }
 
-std::string delUnnecessary(std::string &str)
+int main()
 {
-	int size = str.length();
-	for (int i = 0; i <= size; i++)
-	{
-		for (int j = 0; j <= j; i++)
-		{
-			if (str[i] == ' ' && str[j] != ' ') {
-				str.erase(0, i);
-			}
-		}
-	}
-	return str;
+	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
+	mapa = readElemets(mapa);
+	return 0;
 }
