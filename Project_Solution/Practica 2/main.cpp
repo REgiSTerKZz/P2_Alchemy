@@ -44,9 +44,9 @@ int main()
 		std::string key1 = keys.substr(0, plus);
 		std::string key2 = keys.substr(plus + 1);
 		/*
-		delUnnecessary(value);
-		delUnnecessary(key1);
-		delUnnecessary(key2);
+		value = delUnnecessary(value);
+		key1 = delUnnecessary(key1);
+		key2 = delUnnecessary(key2);
 		*/
 		std::cout << value << std::endl;
 		std::cout << key1 << std::endl;
@@ -75,7 +75,7 @@ int main()
 std::string delUnnecessary(std::string &str)
 {
 	int size = str.length();
-	for (int j = 0; j <= size; j++)
+	for (int j = 0; j <= size-1; j++)
 	{
 		for (int i = 0; i <= j; i++)
 		{
