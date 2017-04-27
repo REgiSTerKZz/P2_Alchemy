@@ -36,7 +36,7 @@ int main()
 	int c = 1;
 	for (auto it = mapa.begin(); it != mapa.end(); ++it) {		// Imprimeix (per poder comprovar)
 		std::cout << c << " = ";
-		std::cout << " " << it->first.first << " " << it->first.second << ":" << it->second << std::endl;
+		std::cout << " " << it->first.first << " -> " << it->first.second << ":" << it->second << std::endl;
 		c++;
 	}
 	std::cout << std::endl;
