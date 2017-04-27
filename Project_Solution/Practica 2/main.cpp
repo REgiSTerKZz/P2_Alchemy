@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include "Header.h"
+#include "PlayerElements.h"
 
 template<>
 struct std::hash<std::pair<std::string, std::string>>
