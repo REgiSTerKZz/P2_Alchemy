@@ -31,10 +31,13 @@ int main()
 		std::string key2 = keys.substr(plus + 2);
 
 
-		mapa.insert({ { { key1 } ,{ key2 } },{ value } });
+		mapa.insert({ { { key1 } ,{ key2 } },{ value } });		// Omplo l'unordered_map
 	}
-	for (auto it = mapa.begin(); it != mapa.end(); ++it) {
+	int c = 1;
+	for (auto it = mapa.begin(); it != mapa.end(); ++it) {		// Imprimeix (per poder comprovar)
+		std::cout << c << " = ";
 		std::cout << " " << it->first.first << " " << it->first.second << ":" << it->second << std::endl;
+		c++;
 	}
 	std::cout << std::endl;
 
