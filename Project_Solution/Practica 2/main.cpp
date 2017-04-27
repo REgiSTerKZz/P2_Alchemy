@@ -1,9 +1,7 @@
 #include <iostream>
-#include <string>
 #include <map>
 #include <fstream>
 #include <vector>
-#include <iterator>
 #include "Header.h"
 
 
@@ -38,58 +36,30 @@ int main()
 
 		getline(combinaciones, line);
 		std::size_t equal = line.find("=");
-		std::string value = line.substr(0, equal);			// Crea un substring des del principi fins a l'=
+		std::string value = line.substr(0, equal - 1);			// Crea un substring des del principi fins a l'=
 		std::string keys = line.substr(equal + 1);			// String de les dues keys
 		std::size_t plus = keys.find("+");
-		std::string key1 = keys.substr(0, plus);
-		std::string key2 = keys.substr(plus + 1);
-		/*
-		value = delUnnecessary(value);
-		key1 = delUnnecessary(key1);
-		key2 = delUnnecessary(key2);
-		*/
+		std::string key1 = keys.substr(1, plus - 1);
+		std::string key2 = keys.substr(plus + 2);
+
+
 		std::cout << value << std::endl;
 		std::cout << key1 << std::endl;
 		std::cout << key2 << std::endl;
-		/*
-		std::vector<char> buffval (value.begin(), value.end());	// Em passa el String a un vector de chars
-		std::vector<char> buffkey1 (key1.begin(), key1.end());
-		std::vector<char> buffkey2 (key2.begin(), key2.end());
-
-		// Aixo passa el vector a string un altre cop
-		std::string valu(buffval.begin(), buffval.end());
-		std::cout << valu << std::endl;
-		*/
-		/*
-		for (std::vector<char>::iterator it = buffer.begin(); it != buffer.end(); ++it) {		// iterador para cada elemento del vector
-
-		}
-		*/
+	
 	}
-
 	return 0;
 }
-
-
 
 std::string delUnnecessary(std::string &str)
 {
 	int size = str.length();
-	for (int j = 0; j <= size-1; j++)
+	for (int i = 0; i <= size; i++)
 	{
-		for (int i = 0; i <= j; i++)
+		for (int j = 0; j <= j; i++)
 		{
-			if (str[i] == ' ' && str[i + 1] == ' ')
-			{
-				str.erase(str.begin() + i);
-			}
-			else if (str[0] == ' ')
-			{
-				str.erase(str.begin());
-			}
-			else if (str[i] == '\0' && str[i - 1] == ' ')
-			{
-				str.erase(str.end() - 1);
+			if (str[i] == ' ' && str[j] != ' ') {
+				str.erase(0, i);
 			}
 		}
 	}
