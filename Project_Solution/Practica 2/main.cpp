@@ -31,11 +31,11 @@ int main()
 	--------------------------------------------------------------------------------------------------------------
 	
 	*/
-	std::ifstream combinaciones("elements.dat");
+	std::ifstream combinaciones("elements.dat", std::ios::in|std::ios::beg);
 	std::string line;
 
 	while (!combinaciones.eof()) {				// Comprova que no hagi arribat al final de l'arxiu
-	
+
 		getline(combinaciones, line);
 		std::size_t equal = line.find("=");
 		std::string value = line.substr(0, equal);			// Crea un substring des del principi fins a l'=
@@ -43,14 +43,18 @@ int main()
 		std::size_t plus = keys.find("+");
 		std::string key1 = keys.substr(0, plus);
 		std::string key2 = keys.substr(plus + 1);
-		
+
 		delUnnecessary(value);
 		delUnnecessary(key1);
 		delUnnecessary(key2);
-		/*std::vector<char> buffval (value.begin(), value.end());	// Em passa el String a un vector de chars
+		std::cout << value << std::endl;
+		std::cout << key1 << std::endl;
+		std::cout << key2 << std::endl;
+		/*
+		std::vector<char> buffval (value.begin(), value.end());	// Em passa el String a un vector de chars
 		std::vector<char> buffkey1 (key1.begin(), key1.end());
 		std::vector<char> buffkey2 (key2.begin(), key2.end());
-		
+
 		// Aixo passa el vector a string un altre cop
 		std::string valu(buffval.begin(), buffval.end());
 		std::cout << valu << std::endl;
@@ -60,32 +64,7 @@ int main()
 
 		}
 		*/
-
 	}
-		/*
-		
-		if (line == "=" || line == "+")
-			signo = true;
-
-		if (c == 1 && signo == false) {
-			value = line;
-			c++;
-			std::cout << value << std::endl;
-		}
-		else if (c == 2 && signo == false) {
-			key1 = line;
-			std::cout << key1 << std::endl;
-			c++;
-		}
-		else if (c == 3 && signo == false) {
-			key2 = line;
-			std::cout << key2 << std::endl;
-			c = 1;
-		}
-		signo = false;
-		*/
-
-	system("pause");
 
 	return 0;
 }
