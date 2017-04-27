@@ -43,10 +43,11 @@ int main()
 		std::size_t plus = keys.find("+");
 		std::string key1 = keys.substr(0, plus);
 		std::string key2 = keys.substr(plus + 1);
-
+		/*
 		delUnnecessary(value);
 		delUnnecessary(key1);
 		delUnnecessary(key2);
+		*/
 		std::cout << value << std::endl;
 		std::cout << key1 << std::endl;
 		std::cout << key2 << std::endl;
