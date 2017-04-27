@@ -6,13 +6,6 @@
 #include <vector>
 #include "Header.h"
 
-template<>
-struct std::hash<std::pair<std::string, std::string>>
-{
-	size_t operator()(const std::pair<std::string, std::string> & p) const {
-		return ((hash<std::string>()(p.first) ^ (hash<std::string>()(p.second) << 1) >> 1));
-	}
-};
 
 int main()
 {
@@ -31,12 +24,10 @@ int main()
 		std::string key2 = keys.substr(plus + 2);
 
 
-		mapa.insert({ { { key1 } ,{ key2 } },{ value } });
+		mapa.insert({{ {key1 } , { key2 } }, { value }});
 	}
-	for (auto it = mapa.begin(); it != mapa.end(); ++it) {
-		std::cout << " " << it->first.first << " " << it->first.second << ":" << it->second << std::endl;
-	}
-	std::cout << std::endl;
 
+	
+	std::cout << std::endl;
 	return 0;
 }
