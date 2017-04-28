@@ -51,8 +51,18 @@ int main()
 {
 	PlayerElements Ele;	
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
-	Ele.printElements();
-	Ele.InputPlayer();
+
+	while (true)
+	{
+		system("cls");
+		Ele.printElements();		
+		Ele.InputPlayer();
+		
+	}
 	
+	
+
+
+	system("pause");
 	return 0;
 }
