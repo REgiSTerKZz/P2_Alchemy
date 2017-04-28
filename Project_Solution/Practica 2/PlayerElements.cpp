@@ -21,6 +21,7 @@ void PlayerElements::printElements() {
 
 void PlayerElements::InputPlayer() {
 	std::string str;
+	std::cout << "Element : " << std::endl;
 	getline(std::cin, str);
 	for (auto it = elements.begin(); it != elements.end(); it++) {
 		if (*it == str) {
