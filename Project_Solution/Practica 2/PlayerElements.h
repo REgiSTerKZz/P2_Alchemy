@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+#include <string>
+
 class PlayerElements
 {
 private:
@@ -8,6 +11,7 @@ public:
 	PlayerElements();	
 	void PlayerElements::addElements(std::string A);
 	void PlayerElements::printElements();
+	void PlayerElements::InputPlayer();
 	~PlayerElements();
 };
 

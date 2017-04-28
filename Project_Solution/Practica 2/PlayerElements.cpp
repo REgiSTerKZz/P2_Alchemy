@@ -17,6 +17,16 @@ void PlayerElements::printElements() {
 	for (int i = 0; i <= elements.max_size(); i++) {
 		std::cout << elements[i] << std::endl;
 	}
+}	
+
+void PlayerElements::InputPlayer() {
+	std::string str;
+	getline(std::cin, str);
+	for (auto it = elements.begin(); it != elements.end(); it++) {
+		if (*it == str) {
+			addElements(str);
+		}
+	}
 }
 
 PlayerElements::~PlayerElements()

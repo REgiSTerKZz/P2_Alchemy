@@ -15,12 +15,7 @@ struct std::hash<std::pair<std::string, std::string>>
 	}
 };
 
-int main()
-{
-	PlayerElements Ele;
-	Ele.addElements("Steam");
-	
-	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
+std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets(std::unordered_map<std::pair<std::string, std::string>, std::string> A) {
 	std::ifstream combinaciones("elements.dat");
 	std::string line;
 
@@ -35,17 +30,25 @@ int main()
 		std::string key2 = keys.substr(plus + 2);
 
 
-		mapa.insert({ { { key1 } ,{ key2 } },{ value } });		// Omplo l'unordered_map
+		A.insert({ { { key1 } ,{ key2 } },{ value } });		// Omplo l'unordered_map
+	
+	
 	}
 	int c = 1;
-	for (auto it = mapa.begin(); it != mapa.end(); ++it) {		// Imprimeix (per poder comprovar)
+	for (auto it = A.begin(); it != A.end(); ++it) {		// Imprimeix (per poder comprovar)
 		std::cout << c << " = ";
 		std::cout << " " << it->first.first << " -> " << it->first.second << ":" << it->second << std::endl;
 		c++;
 	}
 	std::cout << std::endl;
+	return A;
+}
 
-
-
+int main()
+{
+	PlayerElements Ele;	
+	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
+	readElemets(mapa);
+	Ele.InputPlayer();
 	return 0;
 }
