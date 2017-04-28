@@ -35,20 +35,24 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 	
 	}
 	int c = 1;
-	for (auto it = A.begin(); it != A.end(); ++it) {		// Imprimeix (per poder comprovar)
+	/*for (auto it = A.begin(); it != A.end(); ++it) {		// Imprimeix (per poder comprovar)
 		std::cout << c << " = ";
 		std::cout << " " << it->first.first << " -> " << it->first.second << ":" << it->second << std::endl;
 		c++;
 	}
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 	return A;
 }
+
+
+
 
 int main()
 {
 	PlayerElements Ele;	
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
-	readElemets(mapa);
+	Ele.printElements();
 	Ele.InputPlayer();
+	
 	return 0;
 }

@@ -7,6 +7,7 @@
 PlayerElements::PlayerElements()
 {
 	PlayerElements::elements = { {"Aire"}, {"Fuego"},{"Tierra"},{"Agua"} };
+	puntuacion = 0;
 }
 
 void PlayerElements::addElements(std::string A) {
@@ -14,20 +15,33 @@ void PlayerElements::addElements(std::string A) {
 }
 
 void PlayerElements::printElements() {
-	for (int i = 0; i <= elements.max_size(); i++) {
-		std::cout << elements[i] << std::endl;
+	int c = 1;
+	int i = 0;
+	for (auto it = elements.begin(); it != elements.end(); ++it) {		// Imprimeix (per poder comprovar)
+		std::cout << c << "-";
+		std::cout << elements[i]<<std::endl;
+		c++;
+		i++;
 	}
 }	
 
 void PlayerElements::InputPlayer() {
 	std::string str;
 	std::cout << "Element : " << std::endl;
-	getline(std::cin, str);
-	for (auto it = elements.begin(); it != elements.end(); it++) {
-		if (*it == str) {
-			addElements(str);
-		}
-	}
+	
+
+	while (puntuacion<390) {
+		getline(std::cin, str);
+
+		if()
+		
+
+		if (str == "delete")
+			elements.pop_back();
+
+		system("cls");
+		printElements();
+	}	
 }
 
 PlayerElements::~PlayerElements()

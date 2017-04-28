@@ -6,6 +6,7 @@ class PlayerElements
 {
 private:
 	std::vector<std::string> elements;
+	int puntuacion;
 public:
 	
 	PlayerElements();	
