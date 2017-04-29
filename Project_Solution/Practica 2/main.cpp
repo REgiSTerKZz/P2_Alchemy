@@ -6,6 +6,7 @@
 #include <vector>
 #include "Header.h"
 #include "PlayerElements.h"
+#include <Windows.h>
 
 template<>
 struct std::hash<std::pair<std::string, std::string>>
@@ -34,8 +35,9 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 	
 	
 	}
+	/*
 	int c = 1;
-	/*for (auto it = A.begin(); it != A.end(); ++it) {		// Imprimeix (per poder comprovar)
+	for (auto it = A.begin(); it != A.end(); ++it) {		// Imprimeix (per poder comprovar)
 		std::cout << c << " = ";
 		std::cout << " " << it->first.first << " -> " << it->first.second << ":" << it->second << std::endl;
 		c++;
@@ -43,7 +45,6 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 	std::cout << std::endl;*/
 	return A;
 }
-
 
 
 
@@ -59,10 +60,7 @@ int main()
 		Ele.InputPlayer();
 		
 	}
-	
-	
-
-
+		
 	system("pause");
 	return 0;
 }

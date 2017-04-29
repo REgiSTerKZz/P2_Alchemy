@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
+#include <Windows.h>
 
 PlayerElements::PlayerElements()
 {
@@ -39,16 +39,43 @@ void PlayerElements::InputPlayer() {
 	int a = std::stoi(str2.substr(space + 1));
 
 	
-
+	//ADD
 	if (str == "Add" || str == "add") {
-		if () {
-
+		if (a > elements.size()) {	
+			std::cout << "You don't have this element in your own!" << std::endl;
+			InputPlayer();			
 		}
-		addElements(elements[a-1]);	
+		else
+		{
+			addElements(elements[a - 1]);
+		}
 	}
 	
-	if (str == "delete")
-		elements.pop_back();		
+	//DELETE
+	else if (str == "delete" || str == "Delete") {
+		if (a > elements.size()) {
+			std::cout << "You don't have this element in your own!" << std::endl;
+			InputPlayer();
+		}
+		else {
+			elements.erase(elements.begin() + (a - 1));
+		}
+	}
+	
+	//INFO
+	else if (str == "info" || str == "Info") {
+		if (a > elements.size()) {
+			std::cout << "You don't have this element in your own!" << std::endl;
+			InputPlayer();
+		}
+		else {
+			std::string first = "https://es.wikipedia.org/wiki/";
+			std::string second = elements[a-1];
+			std::string last = first + second;
+			LPCSTR url = (LPCSTR)last.c_str();
+			ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
+		}
+	}			
 	
 	std::cin.clear();
 	}	
