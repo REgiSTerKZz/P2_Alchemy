@@ -50,17 +50,15 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 
 int main()
 {
-	PlayerElements Ele;	
+	PlayerElements Alchemy;	
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
-
+	readElemets(mapa);
 	while (true)
 	{
 		system("cls");
-		Ele.printElements();		
-		Ele.InputPlayer();
+		Alchemy.printElements();		
+		Alchemy.InputPlayer();
 		
 	}
-		
-	system("pause");
 	return 0;
 }

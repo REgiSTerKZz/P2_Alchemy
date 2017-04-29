@@ -38,7 +38,8 @@ void PlayerElements::InputPlayer() {
 	std::size_t space = str2.find(" ");	 
 	int a = std::stoi(str2.substr(space + 1));
 
-	
+
+
 	//ADD
 	if (str == "Add" || str == "add") {
 		if (a > elements.size()) {	
