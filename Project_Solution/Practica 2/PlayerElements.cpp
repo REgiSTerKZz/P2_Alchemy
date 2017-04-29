@@ -77,17 +77,16 @@ void PlayerElements::InputPlayer() {
 		}
 	}			
 
+	//SORT
+	else if (str == "sort" || str == "Sort" ) {
+		sort(elements.begin(), elements.end());
+		printElements();
+	}
+	
 	//CLEAR
 	else if (str == "Clear" || str == "clear") {
-		if (a > elements.size()) {
-			std::cout << "You don't have this element in your own!" << std::endl;
-			InputPlayer();
-		}
-		else {
-			elements.erase(unique(elements.begin(), elements.end()), elements.end());
-			printElements();
-		}
-
+		elements.erase(unique(elements.begin(), elements.end()), elements.end());
+		printElements();
 	}
 	
 	std::cin.clear();
