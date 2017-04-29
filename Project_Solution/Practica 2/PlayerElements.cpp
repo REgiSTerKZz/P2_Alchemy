@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <algorithm>
 
 PlayerElements::PlayerElements()
 {
@@ -28,8 +29,7 @@ void PlayerElements::printElements() {
 
 void PlayerElements::InputPlayer() {	
 
-	std::string str;
-	std::string str2;
+	std::string str, str2;
 	std::cout << "Element : " << std::endl;
 
 	std::cin >> str;
@@ -76,6 +76,19 @@ void PlayerElements::InputPlayer() {
 			ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
 		}
 	}			
+
+	//CLEAR
+	else if (str == "Clear" || str == "clear") {
+		if (a > elements.size()) {
+			std::cout << "You don't have this element in your own!" << std::endl;
+			InputPlayer();
+		}
+		else {
+			elements.erase(unique(elements.begin(), elements.end()), elements.end());
+			printElements();
+		}
+
+	}
 	
 	std::cin.clear();
 	}	
