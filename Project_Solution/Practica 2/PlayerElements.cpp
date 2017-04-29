@@ -84,8 +84,8 @@ void PlayerElements::InputPlayer() {
 		printElements();
 	}
 	
-	//CLEAR
-	else if (str == "Clear" || str == "clear") {
+	//CLEAN
+	else if (str == "Clean" || str == "clean") {
 		elements.erase(unique(elements.begin(), elements.end()), elements.end());
 		printElements();
 	}
