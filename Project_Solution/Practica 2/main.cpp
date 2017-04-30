@@ -47,19 +47,21 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 }
 
 
-/*
+
 int main()
 {
-	PlayerElements Alchemy;	
+	PlayerElements Alchemy;
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
 	readElemets(mapa);
 	while (true)
 	{
-		system("cls");
-		Alchemy.printElements();		
+		Alchemy.printElements();
 		Alchemy.InputPlayer();
-		
+		std::cin.clear();
+		system("cls");
 	}
+		
+	
+	system("pause");
 	return 0;
 }
-*/

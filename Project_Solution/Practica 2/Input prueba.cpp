@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-int main() {
+/*int main() {
 	while (true)
 	{
 		std::string str, str2;
@@ -25,4 +25,4 @@ int main() {
 	}
 
 	return 0;
-}
+*/
