@@ -5,6 +5,8 @@
 #include <Windows.h>
 #include <algorithm>
 
+
+
 PlayerElements::PlayerElements()
 {
 	PlayerElements::elements = { {"Aire"}, {"Fuego"},{"Tierra"},{"Agua"} };
@@ -27,65 +29,64 @@ void PlayerElements::printElements() {
 	}
 }	
 
-void PlayerElements::InputPlayer() {	
+void PlayerElements::InputPlayer() {
 
 	std::string str, str2;
-	int a = -1;
-	int b = -1;
+	int a{ -1 };
+	int b{ -1 };
 	std::cout << "Element : " << std::endl;
-
 	std::cin >> str;
-	if (str == "clean" || str == "sort") {
+
+	getline(std::cin, str2);
+	std::size_t space = str2.find(" ");
+	str2 = str2.substr(space + 1);
+
+
+	
+
+	
 		//SORT
 		if (str == "sort" || str == "Sort") {
 			sort(elements.begin(), elements.end());
 		}
 
 		//CLEAN
-		if (str == "Clean" || str == "clean") {
+		else if (str == "Clean" || str == "clean")
+		{
+			sort(elements.begin(), elements.end());
 			elements.erase(unique(elements.begin(), elements.end()), elements.end());
 		}
-	}
-	else {
-		getline(std::cin, str2);
-		std::size_t space = str2.find(" ");
-		str2 = str2.substr(space + 1);
 
-		if (str != "add" && str != "delete" && str != "info" && str != "sort" && str != "clean") {
-			a = std::stoi(str);
+		//ADD BASICS
+		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics") 
+		{			
+				addElements("Aire");
+				addElements("Fuego");
+				addElements("Tierra");
+				addElements("Agua");	
 		}
-		if (str2 != "basics") {
-			b = std::stoi(str2);
-		}
+
 		//ADD
-		if (str == "Add" || str == "add") {
-
-			if (str2 == "basics" || str2 == "Basics")
-			{
-				for (size_t i = 0; i < 4; i++)
-				{
-					addElements(elements[i]);
-				}
-			}
-			else
-			{
-				addElements(elements[b - 1]);
-			}
+		else if (str == "Add" || str == "add")
+		{
+			b = stoi(str2);
+			addElements(elements[b-1]);
 		}
 
 		//DELETE
 		else if (str == "delete" || str == "Delete") {
-			if (b > elements.size()) {
+			b = stoi(str2);
+			if (b > elements.size())
 				std::cout << "You don't have this element in your own!" << std::endl;
 
-			}
-			else {
+			else
 				elements.erase(elements.begin() + (b - 1));
-			}
+
 		}
 
 		//INFO
 		else if (str == "info" || str == "Info") {
+			b = stoi(str2);
 			if (b > elements.size()) {
 				std::cout << "You don't have this element in your own!" << std::endl;
 			}
@@ -97,8 +98,38 @@ void PlayerElements::InputPlayer() {
 				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
 			}
 		}
+
+		
+
+		else if (str == "Help" || str == "help")
+			PlayerElements::Comandos();		
+
+		else if (str[0] >= '48' && str[0] <= '57' && str2[0] >= '48' && str2[0] <= '57')
+		{
+			a = stoi(str);
+			b = stoi(str);
+
+			str = elements[a];
+			str2 = elements[b];
+		}
+		else
+			std::cout << "introduce otro comando" << std::endl;
+
+		std::cin.clear();
 	}
-}	
+
+
+
+
+void PlayerElements::Comandos() {
+	std::cout << "Escribe -Sort- para ordenar los elementos" << std::endl;
+	std::cout << "Escribe -Clean- para eliminar los elementos repetidos" << std::endl;
+	std::cout << "Escribe -Add- y un numero para agregar un elemento" << std::endl;
+	std::cout << "Escribe -Add basics- para añadir los 4 elementos basicos" << std::endl;
+	std::cout << "Escribe -Delete- y un numero para eliminar un elemento" << std::endl;
+	std::cout << "Escribe -Info- para tener informacion de un elemento" << std::endl;
+	std::cout << "Escribe -Help- para abrir este menú" << std::endl;
+}
 
 PlayerElements::~PlayerElements()
 {

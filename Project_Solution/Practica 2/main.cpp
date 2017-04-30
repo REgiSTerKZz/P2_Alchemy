@@ -52,12 +52,13 @@ int main()
 	PlayerElements Alchemy;
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
 	readElemets(mapa);
+	Alchemy.Comandos();
 	while (true)
-	{
+	{		
 		Alchemy.printElements();
-		Alchemy.InputPlayer();
-		std::cin.clear();
-		system("cls");
+		Alchemy.InputPlayer();	
+	
+		
 	}
 		
 	
