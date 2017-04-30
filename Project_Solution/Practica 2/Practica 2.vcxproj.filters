@@ -21,6 +21,9 @@
     <ClCompile Include="PlayerElements.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Input prueba.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h">

@@ -47,7 +47,7 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 }
 
 
-
+/*
 int main()
 {
 	PlayerElements Alchemy;	
@@ -62,3 +62,4 @@ int main()
 	}
 	return 0;
 }
+*/
