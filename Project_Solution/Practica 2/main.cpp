@@ -55,10 +55,12 @@ int main()
 	Alchemy.Comandos();
 	while (true)
 	{		
-		Alchemy.printElements();
-		Alchemy.InputPlayer();	
-		system("cls");
 		
+		Alchemy.printElements();
+		Alchemy.InputPlayer();
+		
+		
+			
 	}
 		
 	

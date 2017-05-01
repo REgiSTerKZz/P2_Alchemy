@@ -31,6 +31,8 @@ void PlayerElements::printElements() {
 
 void PlayerElements::InputPlayer() {
 
+	
+
 	std::string str, str2;
 	int a{ -1 };
 	int b{ -1 };
@@ -48,6 +50,7 @@ void PlayerElements::InputPlayer() {
 		//SORT
 		if (str == "sort" || str == "Sort") {
 			sort(elements.begin(), elements.end());
+			system("cls");
 		}
 
 		//CLEAN
@@ -55,6 +58,7 @@ void PlayerElements::InputPlayer() {
 		{
 			sort(elements.begin(), elements.end());
 			elements.erase(unique(elements.begin(), elements.end()), elements.end());
+			system("cls");
 		}
 
 		//ADD BASICS
@@ -63,7 +67,8 @@ void PlayerElements::InputPlayer() {
 				addElements("Aire");
 				addElements("Fuego");
 				addElements("Tierra");
-				addElements("Agua");	
+				addElements("Agua");
+				system("cls");
 		}
 
 		//ADD
@@ -75,6 +80,7 @@ void PlayerElements::InputPlayer() {
 			else {
 				b = stoi(str2);
 				addElements(elements[b - 1]);
+				system("cls");
 			}
 		}
 
@@ -84,8 +90,10 @@ void PlayerElements::InputPlayer() {
 			if (b > elements.size())
 				std::cout << "You don't have this element in your own!" << std::endl;
 
-			else
+			else {
 				elements.erase(elements.begin() + (b - 1));
+				system("cls");
+			}
 
 		}
 
@@ -94,6 +102,7 @@ void PlayerElements::InputPlayer() {
 			b = stoi(str2);
 			if (b > elements.size()) {
 				std::cout << "You don't have this element in your own!" << std::endl;
+			
 			}
 			else {
 				std::string first = "https://es.wikipedia.org/wiki/";
@@ -101,6 +110,7 @@ void PlayerElements::InputPlayer() {
 				std::string last = first + second;
 				LPCSTR url = (LPCSTR)last.c_str();
 				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
+				system("cls");
 			}
 		}
 
@@ -116,6 +126,7 @@ void PlayerElements::InputPlayer() {
 
 			str = elements[a];
 			str2 = elements[b];
+			system("cls");
 		}
 		else
 			std::cout << "introduce otro comando" << std::endl;
