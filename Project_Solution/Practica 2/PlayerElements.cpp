@@ -9,6 +9,7 @@ PlayerElements::PlayerElements()
 {
 	PlayerElements::elements = { {"Air"}, {"Fire"},{"Earth"},{"Water"} };
 	puntuacion = 0;
+	cls = false;
 }
 
 void PlayerElements::addElements(std::string A) {
@@ -38,10 +39,14 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	std::size_t space = str2.find(" ");
 	str2 = str2.substr(space + 1);
 
+	if (cls == false)
+		
+
 		//SORT
 		if (str == "sort" || str == "Sort") {
 			sort(elements.begin(), elements.end());
 			system("cls");
+			printElements();
 		}
 
 		//CLEAN
@@ -50,6 +55,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 			sort(elements.begin(), elements.end());
 			elements.erase(unique(elements.begin(), elements.end()), elements.end());
 			system("cls");
+			printElements();
 		}
 
 		//ADD BASICS
@@ -60,6 +66,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				addElements("Earth");
 				addElements("Water");
 				system("cls");
+				printElements();
 		}
 
 		//ADD
@@ -72,6 +79,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				b = stoi(str2);
 				addElements(elements[b - 1]);
 				system("cls");
+				printElements();
 			}
 		}
 
@@ -84,6 +92,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 			else {
 				elements.erase(elements.begin() + (b - 1));
 				system("cls");
+				printElements();
 			}
 
 		}
@@ -92,9 +101,8 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		else if (str == "info" || str == "Info") {
 			b = stoi(str2);
 			if (b > elements.size()) {
-				system("cls");
 				std::cout << "You don't have this element in your own!" << std::endl;
-			
+				printElements();			
 			}
 			else {
 				std::string first = "https://es.wikipedia.org/wiki/";
@@ -103,6 +111,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				LPCSTR url = (LPCSTR)last.c_str();
 				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
 				system("cls");
+				printElements();
 			}
 		}
 
@@ -111,6 +120,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		else if (str == "Help" || str == "help") {
 			system("cls");
 			PlayerElements::Comandos();
+			printElements();
 		}
 
 
@@ -118,12 +128,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		{
 			a = stoi(str);
 			b = stoi(str2);
-		
 
-			std::cout<<" a es : " << a << std::endl;
-			std::cout<< "b es: " << b << std::endl;
-
-			
 			//COMBINATION
 			for (auto it : A) {
 				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
@@ -133,8 +138,14 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 					puntuacion++;
 					break;
 				}
+				else {
+					std::cout << "You don't have this element in your own!" << std::endl;
+					break;
+				}
+
+				
 			}
-			system("cls");
+			
 		}
 		std::cin.clear();
 	}
