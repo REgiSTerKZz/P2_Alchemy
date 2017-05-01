@@ -57,7 +57,7 @@ int main()
 	{		
 		Alchemy.printElements();
 		Alchemy.InputPlayer();	
-	
+		system("cls");
 		
 	}
 		
