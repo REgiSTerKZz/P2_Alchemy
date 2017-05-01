@@ -16,7 +16,7 @@ class PlayerElements
 private:
 	std::vector<std::string> elements;
 	int puntuacion;
-	bool cls;
+
 public:
 	
 	PlayerElements();
