@@ -11,6 +11,7 @@ PlayerElements::PlayerElements()
 {
 	PlayerElements::elements = { {"Aire"}, {"Fuego"},{"Tierra"},{"Agua"} };
 	puntuacion = 0;
+	
 }
 
 void PlayerElements::addElements(std::string A) {
@@ -36,17 +37,23 @@ void PlayerElements::InputPlayer() {
 	std::string str, str2;
 	int a{ -1 };
 	int b{ -1 };
-	std::cout << "Element : " << std::endl;
+
 	std::cin >> str;
 
 	getline(std::cin, str2);
 	std::size_t space = str2.find(" ");
 	str2 = str2.substr(space + 1);
 
-
+	bool elementos = false;
 	
-
+		
 	
+	 if (str[0] >= '0' && str[0] <= '9' && str2[0] >= '0' && str2[0] <= '9')
+	{
+		a = stoi(str);
+		b = stoi(str);		
+	}
+
 		//SORT
 		if (str == "sort" || str == "Sort") {
 			sort(elements.begin(), elements.end());
@@ -62,7 +69,7 @@ void PlayerElements::InputPlayer() {
 		}
 
 		//ADD BASICS
-		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics") 
+		if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics") 
 		{			
 				addElements("Aire");
 				addElements("Fuego");
@@ -72,11 +79,13 @@ void PlayerElements::InputPlayer() {
 		}
 
 		//ADD
-		else if (str == "Add" || str == "add")
+		if (str == "Add" || str == "add")
 		{
 			b = stoi(str2);
-			if(b>elements.size())
+			if (b > elements.size()) {
 				std::cout << "You don't have this element in your own!" << std::endl;
+				elementos = true;
+			}
 			else {
 				b = stoi(str2);
 				addElements(elements[b - 1]);
@@ -87,8 +96,10 @@ void PlayerElements::InputPlayer() {
 		//DELETE
 		else if (str == "delete" || str == "Delete") {
 			b = stoi(str2);
-			if (b > elements.size())
+			if (b > elements.size()) {
 				std::cout << "You don't have this element in your own!" << std::endl;
+				elementos = true;
+			}
 
 			else {
 				elements.erase(elements.begin() + (b - 1));
@@ -102,7 +113,7 @@ void PlayerElements::InputPlayer() {
 			b = stoi(str2);
 			if (b > elements.size()) {
 				std::cout << "You don't have this element in your own!" << std::endl;
-			
+				elementos = true;
 			}
 			else {
 				std::string first = "https://es.wikipedia.org/wiki/";
@@ -119,17 +130,16 @@ void PlayerElements::InputPlayer() {
 		else if (str == "Help" || str == "help")
 			PlayerElements::Comandos();		
 
-		else if (str[0] >= '48' && str[0] <= '57' && str2[0] >= '48' && str2[0] <= '57')
-		{
-			a = stoi(str);
-			b = stoi(str);
+		
 
-			str = elements[a];
-			str2 = elements[b];
-			system("cls");
-		}
-		else
+		/*else {
 			std::cout << "introduce otro comando" << std::endl;
+			elementos = true;
+		}*/
+
+	
+
+		
 
 		std::cin.clear();
 	}

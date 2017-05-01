@@ -55,14 +55,10 @@ int main()
 	Alchemy.Comandos();
 	while (true)
 	{		
-		
-		Alchemy.printElements();
-		Alchemy.InputPlayer();
-		
-		
-			
+		Alchemy.InputPlayer();			
 	}
-		
+	
+
 	
 	system("pause");
 	return 0;
