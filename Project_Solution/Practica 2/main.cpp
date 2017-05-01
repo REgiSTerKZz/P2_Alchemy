@@ -40,8 +40,7 @@ int main()
 	Alchemy.Comandos();
 	Alchemy.printElements();
 	while (EndGame == true)
-	{
-		
+	{		
 		Alchemy.InputPlayer(mapa);
 		Alchemy.getBool(EndGame);
 	}
