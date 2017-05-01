@@ -5,19 +5,18 @@
 
 
 
-PlayerElements::PlayerElements()
+PlayerElements::PlayerElements() //Inicializamos los valores de elements y la puntuacion
 {
 	PlayerElements::elements = { {"Air"}, {"Fire"},{"Earth"},{"Water"} };
 	puntuacion = 0;
-
 }
 
-void PlayerElements::addElements(std::string A) {
+void PlayerElements::addElements(std::string A) { //Creamos un atributo que nos ayudara a insertar nuevos elementos cuando lo necesitemos
 	elements.insert(elements.end(), A);
 	printElements();
 }
 
-void PlayerElements::printElements() {
+void PlayerElements::printElements() {//Creamos otro atributo que nos imprimira lo que contiene nuestro vector
 
 	int i = 0;
 	std::cout << "PUNTUACION: " <<"!" << puntuacion<< "!" << std::endl;
@@ -30,69 +29,79 @@ void PlayerElements::printElements() {
 
 void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::string>, std::string> A) {
 	std::string str, str2;
+	//Desde aqui gestionamos todos los comandos que recibamos por consola
+
 	int a{ -1 };
 	int b{ -1 };
 	std::cout << "Element : " << std::endl;
-	std::cin >> str;
+	std::cin >> str;//guardamos toda la linea en el primer string
 
-	getline(std::cin, str2);
-	std::size_t space = str2.find(" ");
-	str2 = str2.substr(space + 1);
-
-	if (cls == false)
+	getline(std::cin, str2);//la segunda parte del primer string la guardamos en el segundo
+	std::size_t space = str2.find(" ");//buscamos el espacio
+	str2 = str2.substr(space + 1);//y lo extraemos para trabajar mejor
 		
 
-		//SORT
+		//SORT-Nos aprovechamos de las funciones miembro
+		//cuando el usuario nos ponga el comando sort
+		//utilizaremos la funcion miembro del mismo nombre
 		if (str == "sort" || str == "Sort") {
 			sort(elements.begin(), elements.end());
-			system("cls");
-			printElements();
+			system("cls");//limpia la pantalla
+			printElements();//printa la lista modificada
 		}
 
-		//CLEAN
+		//CLEAN-Nos aprovechamos de las funciones miembro
+		//cuando el usuario nos ponga el comando clean
+		//utilizaremos la funcion miembro del mismo nombre
 		else if (str == "Clean" || str == "clean")
 		{
-			sort(elements.begin(), elements.end());
-			elements.erase(unique(elements.begin(), elements.end()), elements.end());
-			system("cls");
-			printElements();
+			sort(elements.begin(), elements.end());//primero los ordenamos 
+			elements.erase(unique(elements.begin(), elements.end()), elements.end());//y despues procedemos a borrar los duplicados
+			system("cls");//limpia la pantalla
+			printElements();//printa la lista modificada
 		}
 
-		//ADD BASICS
+		//ADD BASICS-Nos aprovechamos de las funciones miembro
+		//cuando el usuario nos ponga el comando add basics
+		//añadimos los 4 tipos basicos al vector utilizando el atributo addElement y la FM instert
 		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics" || str2 == "basics " || str2 == "Basics ")
 		{			
 				addElements("Air");
 				addElements("Fire");
 				addElements("Earth");
 				addElements("Water");
-				system("cls");
-				printElements();
+				system("cls");//limpia la pantalla
+				printElements();//printa la lista modificada
 		}
 
-		//ADD
+		//ADD-Nos aprovechamos de las funciones miembro
+		//cuando el usuario nos ponga el comando add
+		//añadiremos el elemento que quiera utilizando el atributo addElement y la FM insert
 		else if (str == "Add" || str == "add")
 		{
 			b = stoi(str2);
-			if(b>elements.size())
+			if(b>elements.size())//si pone un numero que no tiene en la lista salta este msj
 				std::cout << "You don't have this element in your own!" << std::endl;
 			else {
 				b = stoi(str2);
 				addElements(elements[b - 1]);
-				system("cls");
-				printElements();
+				system("cls");//limpia la pantalla
+				printElements();//printa la lista modificada
 			}
 		}
 
-		//DELETE
+		//DELETE-Nos aprovechamos de las funciones miembro
+		//cuando el usuario nos ponga el comando delete
+		//eliminaremos el elemento mediante la funcion miembro erase
 		else if (str == "delete" || str == "Delete") {
 			b = stoi(str2);
-			if (b > elements.size())
+			if (b > elements.size())//si pone un numero que no tiene en la lista salta este msj
 				std::cout << "You don't have this element in your own!" << std::endl;
 
-			else {
+			else {//si el elemento esta en la lista lo borra
 				elements.erase(elements.begin() + (b - 1));
-				system("cls");
-				printElements();
+				system("cls");//limpia la pantalla
+				printElements();//printa la lista modificada
 			}
 
 		}
@@ -110,13 +119,13 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				std::string last = first + second;
 				LPCSTR url = (LPCSTR)last.c_str();
 				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
-				system("cls");
-				printElements();
+				system("cls");//limpia la pantalla 
+				printElements();//printa de nuevo la lista
 			}
 		}
 
 		
-		//HELP
+		//HELP-Mediante el atributo creado volvemos a imprimir todos los comandos que hay 
 		else if (str == "Help" || str == "help") {
 			system("cls");
 			PlayerElements::Comandos();
@@ -161,7 +170,7 @@ bool PlayerElements::getBool(bool &EndGame) {
 	return EndGame;
 }
 
-void PlayerElements::Comandos() {
+void PlayerElements::Comandos() { //utilizamos este atributo para imprmir mensajes por consola
 	std::cout <<"-------------------------------HELP-IN-COMING------------------------------ "<< std::endl;
 	std::cout << "Escribe - Sort - para ordenar los elementos" << std::endl;
 	std::cout << "Escribe - Clean - para eliminar los elementos repetidos" << std::endl;
@@ -174,6 +183,6 @@ void PlayerElements::Comandos() {
 	std::cout << std::endl;
 }
 
-PlayerElements::~PlayerElements()
+PlayerElements::~PlayerElements()//destructor de la clase
 {
 }
