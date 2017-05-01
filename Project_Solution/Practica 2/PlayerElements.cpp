@@ -70,7 +70,12 @@ void PlayerElements::InputPlayer() {
 		else if (str == "Add" || str == "add")
 		{
 			b = stoi(str2);
-			addElements(elements[b-1]);
+			if(b>elements.size())
+				std::cout << "You don't have this element in your own!" << std::endl;
+			else {
+				b = stoi(str2);
+				addElements(elements[b - 1]);
+			}
 		}
 
 		//DELETE
