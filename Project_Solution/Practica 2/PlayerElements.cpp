@@ -114,26 +114,22 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		}
 
 
-		if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
-		{
-			a = stoi(str);
-			b = stoi(str2);
-		
-
-			std::cout<<" a es : " << a << std::endl;
-			std::cout<< "b es: " << b << std::endl;
-
-			
-			//COMBINATION
-			for (auto it : A) {
+			if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))								// Si el primer element dels dos stings que llegeixen l'Input del jugador son numeros
+	{			
+		a = stoi(str);																						// Passem els dos strings a valors enters per poder fer-los servir com a iteradors amb l'operador []
+		b = stoi(str2);			
+		//COMBINATION
+		if ((a <= elements.size() - 1) && (b < elements.size() - 1) && (a != b)) {							// Comprova que a i b siguin més petits que la mida del vector i que no siguin iguals entre ells
+			for (auto it : A) {																				// Un bucle que comprova si la combinació que el jugador ha introduït és correcta
 				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
-					elements.erase(elements.begin() + (a - 1));
-					elements.erase(elements.begin() + (b - 2));					
-					addElements(it.second);
+					elements.erase(elements.begin() + (a - 1));												// En el cas que sigui correcta elimina els dos elements que ha combinat
+					elements.erase(elements.begin() + (b - 2));
+					addElements(it.second);																	// I afageix l'element que n'ha resulta			
 					puntuacion++;
 					break;
 				}
 			}
+		}
 			system("cls");
 		}
 		std::cin.clear();
