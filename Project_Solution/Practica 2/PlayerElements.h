@@ -23,7 +23,7 @@ public:
 	void PlayerElements::printElements();
 	void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::string>, std::string> A);
 	void PlayerElements::Comandos();
-	bool PlayerElements::getBool(bool EndGame);
+	bool PlayerElements::getBool(bool &EndGame);
 	~PlayerElements();
 };
 

@@ -17,12 +17,12 @@ void PlayerElements::addElements(std::string A) {
 }
 
 void PlayerElements::printElements() {
-	int c = 1;
+
 	int i = 0;
+	std::cout << "PUNTUACION: " <<"!" << puntuacion<< "!" << std::endl;
 	for (auto it = elements.begin(); it != elements.end(); ++it) {		// Imprimeix (per poder comprovar)
-		std::cout << c << "-";
+		std::cout << i+1 << "-";
 		std::cout << elements[i]<<std::endl;
-		c++;
 		i++;
 	}
 }	
@@ -53,7 +53,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		}
 
 		//ADD BASICS
-		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics") 
+		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics" || str2 == "basics " || str2 == "Basics ")
 		{			
 				addElements("Air");
 				addElements("Fire");
@@ -123,41 +123,35 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 			std::cout<<" a es : " << a << std::endl;
 			std::cout<< "b es: " << b << std::endl;
 
-
+			
 			//COMBINATION
-			for (auto it = A.begin(); it != A.end(); ++it) {
-				if ((elements[a-1] == it->first.first && elements[b-1] == it->first.second) || (elements[b-1] == it->first.first && elements[a-1] == it->first.second)) {
-					elements.erase(elements.begin() + (b - 1));
+			for (auto it : A) {
+				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
 					elements.erase(elements.begin() + (a - 1));
-					addElements(it->second);
-					for (int i = 0; i < elements.size(); i++) {
-						if (elements[i] != it->second) {
-							puntuacion++;
-						}
-					}
+					elements.erase(elements.begin() + (b - 2));					
+					addElements(it.second);
+					puntuacion++;
+					break;
 				}
 			}
 			system("cls");
 		}
-		else {
-			std::cout << "introduce otro comando" << std::endl;
-		}
-
 		std::cin.clear();
 	}
 
-bool PlayerElements::getBool(bool EndGame) {
-	if (puntuacion >= 390) {
-		return false;
+bool PlayerElements::getBool(bool &EndGame) {
+	if (puntuacion < 390) {
+		EndGame = true;
 	}
 	else
 	{
-		return true;
+		EndGame = false;
 	}
+	return EndGame;
 }
 
-
 void PlayerElements::Comandos() {
+	std::cout <<"-------------------------------HELP-IN-COMING------------------------------ "<< std::endl;
 	std::cout << "Escribe - Sort - para ordenar los elementos" << std::endl;
 	std::cout << "Escribe - Clean - para eliminar los elementos repetidos" << std::endl;
 	std::cout << "Escribe - Add - y un numero para agregar un elemento" << std::endl;
@@ -165,6 +159,8 @@ void PlayerElements::Comandos() {
 	std::cout << "Escribe - Delete - y un numero para eliminar un elemento" << std::endl;
 	std::cout << "Escribe - Info - para tener informacion de un elemento" << std::endl;
 	std::cout << "Escribe - Help - para abrir este menú" << std::endl;
+	std::cout <<"--------------------------------------------------------------------------- "<< std::endl;
+	std::cout << std::endl;
 }
 
 PlayerElements::~PlayerElements()

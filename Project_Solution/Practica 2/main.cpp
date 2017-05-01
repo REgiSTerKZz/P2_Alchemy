@@ -26,18 +26,7 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 
 
 		A.insert({ { { key1 } ,{ key2 } },{ value } });		// Omplo l'unordered_map
-	
-	
 	}
-	/*
-	int c = 1;
-	for (auto it = A.begin(); it != A.end(); ++it) {		// Imprimeix (per poder comprovar)
-		std::cout << c << " = ";
-		std::cout << " " << it->first.first << " -> " << it->first.second << ":" << it->second << std::endl;
-		c++;
-	}
-	std::cout << std::endl;
-	*/
 	return A;
 }
 
@@ -49,12 +38,15 @@ int main()
 	readElemets(mapa);
 	PlayerElements Alchemy;
 	Alchemy.Comandos();
-	while (true)
+	while (EndGame == true)
 	{
 		Alchemy.printElements();
 		Alchemy.InputPlayer(mapa);
 		Alchemy.getBool(EndGame);
 	}
-			
+	
+	std::cout <<"   CONGRATULATIONS!" << std::endl;
+	std::cout << "YOU FINISHED ALCHEMY!" << std::endl;
+	Sleep(5000);
 	return 0;
 }
