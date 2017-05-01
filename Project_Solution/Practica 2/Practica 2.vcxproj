@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Input prueba.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerElements.cpp" />
   </ItemGroup>

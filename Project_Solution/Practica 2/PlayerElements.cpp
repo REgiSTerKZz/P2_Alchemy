@@ -7,7 +7,7 @@
 
 PlayerElements::PlayerElements()
 {
-	PlayerElements::elements = { {"Aire"}, {"Fuego"},{"Tierra"},{"Agua"} };
+	PlayerElements::elements = { {"Air"}, {"Fire"},{"Earth"},{"Water"} };
 	puntuacion = 0;
 }
 
@@ -28,9 +28,6 @@ void PlayerElements::printElements() {
 }	
 
 void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::string>, std::string> A) {
-
-	
-
 	std::string str, str2;
 	int a{ -1 };
 	int b{ -1 };
@@ -41,10 +38,6 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	std::size_t space = str2.find(" ");
 	str2 = str2.substr(space + 1);
 
-	
-
-		
-	
 		//SORT
 		if (str == "sort" || str == "Sort") {
 			sort(elements.begin(), elements.end());
@@ -62,10 +55,10 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		//ADD BASICS
 		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics") 
 		{			
-				addElements("Aire");
-				addElements("Fuego");
-				addElements("Tierra");
-				addElements("Agua");
+				addElements("Air");
+				addElements("Fire");
+				addElements("Earth");
+				addElements("Water");
 				system("cls");
 		}
 
@@ -121,7 +114,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		}
 
 
-		else if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
+		if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
 		{
 			a = stoi(str);
 			b = stoi(str);
@@ -132,7 +125,6 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 					addElements(it->second);
 				}
 			}
-
 			system("cls");
 		}
 		else {

@@ -5,29 +5,123 @@
 #include <fstream>
 #include <vector>
 #include "Header.h"
+#include <algorithm>
+#include <Windows.h>
 
+void addElements(std::string A, std::vector<std::string> Vec) {
+	Vec.insert(Vec.end(), A);
+}
 
 int main()
 {
-	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
-	std::ifstream combinaciones("elements.dat");
-	std::string line;
+	std::vector<std::string> elements { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };
+	while (true)
+	{
+		std::string str, str2;
+		int a{ -1 };
+		int b{ -1 };
+		std::cout << "Element : " << std::endl;
+		std::cin >> str;
 
-	while (!combinaciones.eof()) {								// Comprova que no hagi arribat al final de l'arxiu
-		getline(combinaciones, line);							// Agafa la linea sencera fins al "\n"
+		getline(std::cin, str2);
+		std::size_t space = str2.find(" ");
+		str2 = str2.substr(space + 1);
 
-		std::size_t equal = line.find("=");
-		std::string value = line.substr(0, equal - 1);			// Crea un substring des del principi fins a l'=
-		std::string keys = line.substr(equal + 1);				// String de les dues keys
-		std::size_t plus = keys.find("+");
-		std::string key1 = keys.substr(1, plus - 2);			// Separa les keys per el signe "+"
-		std::string key2 = keys.substr(plus + 2);
+		//SORT
+		if (str == "sort" || str == "Sort") {
+			sort(elements.begin(), elements.end());
+			system("cls");
+		}
+
+		//CLEAN
+		else if (str == "Clean" || str == "clean")
+		{
+			sort(elements.begin(), elements.end());
+			elements.erase(unique(elements.begin(), elements.end()), elements.end());
+			system("cls");
+		}
+
+		//ADD BASICS
+		else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics")
+		{
+			addElements("Air", elements);
+			addElements("Fire", elements);
+			addElements("Earth", elements);
+			addElements("Water", elements);
+			system("cls");
+		}
+
+		//ADD
+		else if (str == "Add" || str == "add")
+		{
+			b = stoi(str2);
+			if (b>elements.size())
+				std::cout << "You don't have this element in your own!" << std::endl;
+			else {
+				b = stoi(str2);
+				addElements(elements[b - 1]);
+				system("cls");
+			}
+		}
+
+		//DELETE
+		else if (str == "delete" || str == "Delete") {
+			b = stoi(str2);
+			if (b > elements.size())
+				std::cout << "You don't have this element in your own!" << std::endl;
+
+			else {
+				elements.erase(elements.begin() + (b - 1));
+				system("cls");
+			}
+
+		}
+
+		//INFO
+		else if (str == "info" || str == "Info") {
+			b = stoi(str2);
+			if (b > elements.size()) {
+				system("cls");
+				std::cout << "You don't have this element in your own!" << std::endl;
+
+			}
+			else {
+				std::string first = "https://es.wikipedia.org/wiki/";
+				std::string second = elements[b - 1];
+				std::string last = first + second;
+				LPCSTR url = (LPCSTR)last.c_str();
+				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
+				system("cls");
+			}
+		}
 
 
-		mapa.insert({{ {key1 } , { key2 } }, { value }});
+		//HELP
+		else if (str == "Help" || str == "help") {
+			system("cls");
+			//PlayerElements::Comandos();
+		}
+
+
+		if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
+		{
+			a = stoi(str);
+			b = stoi(str);
+
+			//COMBINATION
+			for (auto it = A.begin(); it != A.end(); ++it) {
+				if ((elements[a] == it->first.first && elements[b] == it->first.second) || (elements[b] == it->first.first && elements[a] == it->first.second)) {
+					addElements(it->second);
+				}
+			}
+			system("cls");
+		}
+		else {
+			std::cout << "introduce otro comando" << std::endl;
+		}
+
+		std::cin.clear();
 	}
 
-	
-	std::cout << std::endl;
 	return 0;
 }
