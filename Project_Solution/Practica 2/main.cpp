@@ -36,7 +36,8 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 		std::cout << " " << it->first.first << " -> " << it->first.second << ":" << it->second << std::endl;
 		c++;
 	}
-	std::cout << std::endl;*/
+	std::cout << std::endl;
+	*/
 	return A;
 }
 
