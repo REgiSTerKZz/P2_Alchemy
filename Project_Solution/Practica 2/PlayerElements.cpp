@@ -117,12 +117,24 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
 		{
 			a = stoi(str);
-			b = stoi(str);
+			b = stoi(str2);
+		
+
+			std::cout<<" a es : " << a << std::endl;
+			std::cout<< "b es: " << b << std::endl;
+
 
 			//COMBINATION
 			for (auto it = A.begin(); it != A.end(); ++it) {
-				if ((elements[a] == it->first.first && elements[b] == it->first.second) || (elements[b] == it->first.first && elements[a] == it->first.second)) {
+				if ((elements[a-1] == it->first.first && elements[b-1] == it->first.second) || (elements[b-1] == it->first.first && elements[a-1] == it->first.second)) {
+					elements.erase(elements.begin() + (b - 1));
+					elements.erase(elements.begin() + (a - 1));
 					addElements(it->second);
+					for (int i = 0; i < elements.size(); i++) {
+						if (elements[i] != it->second) {
+							puntuacion++;
+						}
+					}
 				}
 			}
 			system("cls");
