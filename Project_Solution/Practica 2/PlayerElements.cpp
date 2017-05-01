@@ -130,9 +130,13 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				}
 			}
 		}
-			system("cls");
+		else {
+			std::cout << "You dont' have this element in your own!" << std::endl;
+			Sleep(2000);
 		}
-		std::cin.clear();
+		system("cls");
+			}
+			std::cin.clear();
 	}
 
 bool PlayerElements::getBool(bool &EndGame) {
