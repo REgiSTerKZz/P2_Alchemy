@@ -142,7 +142,15 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		std::cin.clear();
 	}
 
-
+bool PlayerElements::getBool(bool EndGame) {
+	if (puntuacion >= 390) {
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
 
 
 void PlayerElements::Comandos() {

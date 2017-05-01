@@ -44,6 +44,7 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 
 int main()
 {
+	bool EndGame = true;
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;
 	readElemets(mapa);
 	PlayerElements Alchemy;
@@ -52,6 +53,7 @@ int main()
 	{
 		Alchemy.printElements();
 		Alchemy.InputPlayer(mapa);
+		Alchemy.getBool(EndGame);
 	}
 			
 	return 0;
