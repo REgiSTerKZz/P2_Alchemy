@@ -9,7 +9,7 @@ PlayerElements::PlayerElements()
 {
 	PlayerElements::elements = { {"Air"}, {"Fire"},{"Earth"},{"Water"} };
 	puntuacion = 0;
-
+	cls = false;
 }
 
 void PlayerElements::addElements(std::string A) {
