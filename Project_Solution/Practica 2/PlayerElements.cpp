@@ -7,12 +7,13 @@
 
 PlayerElements::PlayerElements()
 {
-	PlayerElements::elements = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };
+	elements = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };
+	Puntua = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };
 	puntuacion = 0;
 }
 
-void PlayerElements::addElements(std::string A) {
-	elements.insert(elements.end(), A);
+void PlayerElements::addElements(std::vector<std::string> &Vec ,std::string A) {
+	Vec.insert(Vec.end(), A);
 	printElements();
 }
 
@@ -55,25 +56,35 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	//ADD BASICS
 	else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics" || str2 == "basics " || str2 == "Basics ")
 	{
-		addElements("Air");
-		addElements("Fire");
-		addElements("Earth");
-		addElements("Water");
+		addElements(elements, "Air");
+		addElements(elements, "Fire");
+		addElements(elements, "Earth");
+		addElements(elements, "Water");
 		system("cls");
 	}
 
 	//ADD
 	else if (str == "Add" || str == "add")
 	{
-		b = stoi(str2);
-		if (b > elements.size()){
+		if (str[0] >= '0' && str2[0] <= '9') {
+			b = stoi(str2);
+			if (b > elements.size()) {
+				std::cout << "You don't have this element in your own!" << std::endl;
+				Sleep(2000);
+			}
+		
+			else {
+			b = stoi(str2);			
+			addElements(elements, elements[b - 1]);
+			system("cls");
+			}
+		}
+		else{
+			system("cls");
 			std::cout << "You don't have this element in your own!" << std::endl;
 			Sleep(2000);
-		}
-		else {
-			b = stoi(str2);
-			addElements(elements[b - 1]);
 			system("cls");
+			
 		}
 	}
 
@@ -133,8 +144,14 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
 					elements.erase(elements.begin() + (a - 1));
 					elements.erase(elements.begin() + (b - 2));
-					addElements(it.second);
-					puntuacion++;
+					addElements(elements, it.second);
+					if (std::find(Puntua.begin(), Puntua.end(), it.second) != Puntua.end()) {
+						
+					}						
+					else {
+						addElements(Puntua, it.second);
+						puntuacion++;
+					}	
 					break;
 				}
 			}

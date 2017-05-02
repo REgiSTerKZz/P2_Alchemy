@@ -45,7 +45,7 @@ int main()
 		Alchemy.getBool(EndGame);
 	}
 
-	std::cout << "   CONGRATULATIONS!" << std::endl;
+	std::cout << "  CONGRATULATIONS!" << std::endl;
 	std::cout << "YOU FINISHED ALCHEMY!" << std::endl;
 	Sleep(5000);
 	return 0;
