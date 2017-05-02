@@ -155,18 +155,18 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 					elements.erase(elements.begin() + (a - 1));								//elimina a del vector
 					elements.erase(elements.begin() + (b - 2));								//elimina b del vector
 					addElements(elements, it.second);										//posa l'element de la posicion on "a i b" o "b i a" coincideixen
-					if (std::find(Puntua.begin(), Puntua.end(), it.second) != Puntua.end()) {
+					if (std::find(Puntua.begin(), Puntua.end(), it.second) != Puntua.end()) {//Busca si l'element creat esta en el vector puntua
 						
 					}						
 					else {
-						addElements(Puntua, it.second);
+						addElements(Puntua, it.second);										 //Si no esta, suma 1 a la puntuació
 						puntuacion++;
 					}	
 					break;
 				}
 			}
 		}
-		else if (a == b){
+		else if (a == b){																	  //Si a es igual a b no et deixa fer la combinació
 			system("cls");
 			std::cout << "You can't combine the same element!" << std::endl;
 			Sleep(2000);
@@ -176,7 +176,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		system("cls");
 	}
 	
-	else
+	else																					  //Si no entra al primer if imprimeix el missatge
 	{
 		system("cls");
 		std::cout << "Try another command" << std::endl;
@@ -187,18 +187,18 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	std::cin.clear();
 }
 
-bool PlayerElements::getBool(bool &EndGame) {
+bool PlayerElements::getBool(bool &EndGame) {												  //Fem un bool per a la puntuació
 	if (puntuacion < 390) {
 		EndGame = true;
 	}
-	else
+	else																					  //El joc acaba quan es igual a 390 combinacions
 	{
 		EndGame = false;
 	}
 	return EndGame;
 }
 
-void PlayerElements::Comandos() {
+void PlayerElements::Comandos() {																//Atribut que imprimeix el missatges
 	std::cout << "------------------------------HELP-IN-COMING------------------------------ " << std::endl;
 	std::cout << "  Escribe -Sort-	Para ordenar los elementos" << std::endl;
 	std::cout << "  Escribe -Clean-	Para eliminar los elementos repetidos" << std::endl;
@@ -211,6 +211,6 @@ void PlayerElements::Comandos() {
 	std::cout << std::endl;
 }
 
-PlayerElements::~PlayerElements()
+PlayerElements::~PlayerElements()																//Destructor
 {
 }
