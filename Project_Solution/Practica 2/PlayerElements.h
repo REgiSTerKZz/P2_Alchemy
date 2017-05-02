@@ -4,7 +4,7 @@
 #include <unordered_map>
 
 template<>
-struct std::hash<std::pair<std::string, std::string>>
+struct std::hash<std::pair<std::string, std::string>>												// Funció per declara un unordered_map per tal que el pair de keys funcioni
 {
 	size_t operator()(const std::pair<std::string, std::string> & p) const {
 		return ((hash<std::string>()(p.first) ^ (hash<std::string>()(p.second) << 1) >> 1));

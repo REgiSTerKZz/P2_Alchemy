@@ -7,9 +7,9 @@
 
 PlayerElements::PlayerElements()
 {
-	elements = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };
-	Puntua = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };
-	puntuacion = 0;
+	elements = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };									// Inicialitza el vector elements amb els quatre elements bàsics
+	Puntua = { { "Air" },{ "Fire" },{ "Earth" },{ "Water" } };										// Inicialitza el vector elements amb els quatre elements bàsics
+	puntuacion = 0;																					// Inicialitza la variable puntuació a 0
 }
 
 void PlayerElements::addElements(std::vector<std::string> &Vec ,std::string A) {
@@ -112,26 +112,26 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	
 
 	//INFO
-	else if (str == "info" || str == "Info") {
-		if (str[0] >= '0' && str2[0] <= '9') {
-			b = stoi(str2);
-			if (b > elements.size()) {
+	else if (str == "info" || str == "Info") {												// Comprova que el str sigui igual a "Info"
+		if (str[0] >= '0' && str2[0] <= '9') {												// en el cas que el segon element (str2) sigui igual a un nombre(int)
+			b = stoi(str2);																	// Passa str2 de string a int i ho guarda a la variable b
+			if (b > elements.size()) {														// Si b és més gran que la mida del vector
 				system("cls");
-				std::cout << "You don't have this element in your own!" << std::endl;
+				std::cout << "You don't have this element in your own!" << std::endl;		// Sortirà un missatge que no hi ha l'element que el player ha demanat
 				Sleep(2000);
 			}
-			else {
-				std::string first = "https://es.wikipedia.org/wiki/";
-				std::string second = elements[b - 1];
-				std::string last = first + second;
-				LPCSTR url = (LPCSTR)last.c_str();
-				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
+			else {																			// Si b està dins dels valors del vector, 
+				std::string first = "https://es.wikipedia.org/wiki/";						// Inicialitza un string amb la primera part de la url de la wikipedia
+				std::string second = elements[b - 1];										// Inicialitza un altre string amb la segona part del link ( l'element que el jugador ha demanat )
+				std::string last = first + second;											// Amb l'operador '+' ajuntem els dos strings en un per tal de tenir l'URL complet
+				LPCSTR url = (LPCSTR)last.c_str();											// Fa un cast de string a LPCSTR
+				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);		// Crida la funció ShellExecuteA();
 				system("cls");
 			}
 		}
-		else {
-			system("cls");
-			std::cout << str2 << " is not a valid element" << std::endl;
+		else {																				// EN el cas que srt2 no sigui un nombre(int)
+			system("cls");	
+			std::cout << str2 << " is not a valid element" << std::endl;					// Printa un missatge avisan-te que l'element que has introduït no és vàlid
 			Sleep(2000);
 			system("cls");
 		}
