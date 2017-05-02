@@ -21,7 +21,7 @@ void PlayerElements::printElements() {
 
 	int i = 0;
 	std::cout << "PUNTUACION: " << "!" << puntuacion << "!" << std::endl;
-	for (auto it = elements.begin(); it != elements.end(); ++it) {		// Imprimeix (per poder comprovar)
+	for (auto it = elements.begin(); it != elements.end(); ++it) {		
 		std::cout << i + 1 << "-";
 		std::cout << elements[i] << std::endl;
 		i++;
@@ -72,19 +72,18 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 				std::cout << "You don't have this element in your own!" << std::endl;
 				Sleep(2000);
 			}
-		
+
 			else {
-			b = stoi(str2);			
-			addElements(elements, elements[b - 1]);
-			system("cls");
+				b = stoi(str2);
+				addElements(elements, elements[b - 1]);
+				system("cls");
 			}
 		}
-		else{
+		else {
 			system("cls");
 			std::cout << "You don't have this element in your own!" << std::endl;
 			Sleep(2000);
 			system("cls");
-			
 		}
 	}
 
@@ -104,18 +103,26 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 
 	//INFO
 	else if (str == "info" || str == "Info") {
-		b = stoi(str2);
-		if (b > elements.size()) {
+		if (str[0] >= '0' && str2[0] <= '9') {
+			b = stoi(str2);
+			if (b > elements.size()) {
+				system("cls");
+				std::cout << "You don't have this element in your own!" << std::endl;
+				Sleep(2000);
+			}
+			else {
+				std::string first = "https://es.wikipedia.org/wiki/";
+				std::string second = elements[b - 1];
+				std::string last = first + second;
+				LPCSTR url = (LPCSTR)last.c_str();
+				ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
+				system("cls");
+			}
+		}
+		else {
 			system("cls");
 			std::cout << "You don't have this element in your own!" << std::endl;
 			Sleep(2000);
-		}
-		else {
-			std::string first = "https://es.wikipedia.org/wiki/";
-			std::string second = elements[b - 1];
-			std::string last = first + second;
-			LPCSTR url = (LPCSTR)last.c_str();
-			ShellExecuteA(nullptr, "open", url, nullptr, nullptr, SW_SHOWNORMAL);
 			system("cls");
 		}
 	}
@@ -132,12 +139,6 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	{
 		a = stoi(str);
 		b = stoi(str2);
-
-
-		std::cout << " a es : " << a << std::endl;
-		std::cout << "b es: " << b << std::endl;
-
-
 		//COMBINATION
 		if ((a != b) && ( a < elements.size()+1) && ( b < elements.size()+1) ) {
 			for (auto it : A) {
@@ -155,6 +156,12 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 					break;
 				}
 			}
+		}
+		else if (a == b){
+			system("cls");
+			std::cout << "You can't combine the same element!" << std::endl;
+			Sleep(2000);
+			system("cls");
 		}
 		else if ((a < elements.size() + 1) && (b < elements.size() + 1)) {
 
