@@ -126,15 +126,13 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 			system("cls");
 		}
 	}
-
-
+	
 	//HELP
 	else if (str == "Help" || str == "help") {
 		system("cls");
 		PlayerElements::Comandos();
 	}
-
-
+	
 	if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
 	{
 		a = stoi(str);
@@ -183,7 +181,7 @@ bool PlayerElements::getBool(bool &EndGame) {
 }
 
 void PlayerElements::Comandos() {
-	std::cout << "-------------------------------HELP-IN-COMING------------------------------ " << std::endl;
+	std::cout << "------------------------------HELP-IN-COMING------------------------------ " << std::endl;
 	std::cout << "  Escribe -Sort-	Para ordenar los elementos" << std::endl;
 	std::cout << "  Escribe -Clean-	Para eliminar los elementos repetidos" << std::endl;
 	std::cout << "  Escribe -Add-		Y un numero para agregar un elemento" << std::endl;
@@ -191,7 +189,7 @@ void PlayerElements::Comandos() {
 	std::cout << "  Escribe -Delete-	Y un numero para eliminar un elemento" << std::endl;
 	std::cout << "  Escribe -Info-	Para tener informacion de un elemento" << std::endl;
 	std::cout << "  Escribe -Help-	Para abrir este menu" << std::endl;
-	std::cout << "--------------------------------------------------------------------------- " << std::endl;
+	std::cout << "-------------------------------------------------------------------------- " << std::endl;
 	std::cout << std::endl;
 }
 
