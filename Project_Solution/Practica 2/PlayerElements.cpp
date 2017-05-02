@@ -143,7 +143,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		PlayerElements::Comandos();
 	}
 	
-	if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
+	else if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
 	{
 		a = stoi(str);
 		b = stoi(str2);
@@ -174,12 +174,15 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 
 		system("cls");
 	}
-	else {
+	
+	else
+	{
 		system("cls");
-		std::cout << "Try another command!" << std::endl;
+		std::cout << "Try another command" << std::endl;
 		Sleep(2000);
 		system("cls");
 	}
+
 	std::cin.clear();
 }
 
