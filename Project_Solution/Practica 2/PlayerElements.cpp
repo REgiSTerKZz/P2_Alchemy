@@ -81,7 +81,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		}
 		else {
 			system("cls");
-			std::cout << "You don't have this element in your own!" << std::endl;
+			std::cout << str2 << " is not a valid element" << std::endl;
 			Sleep(2000);
 			system("cls");
 		}
@@ -89,17 +89,27 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 
 	//DELETE
 	else if (str == "delete" || str == "Delete") {
-		b = stoi(str2);
-		if (b > elements.size()) {
-			std::cout << "You don't have this element in your own!" << std::endl;
-			Sleep(2000);
-		}
-		else {
-			elements.erase(elements.begin() + (b - 1));
-			system("cls");
-		}
 
+		if (str[0] >= '0' && str2[0] <= '9') {
+			b = stoi(str2);
+			if (b > elements.size()) {
+				std::cout << "You don't have this element in your own!" << std::endl;
+				Sleep(2000);
+			}
+			else {
+				elements.erase(elements.begin() + (b - 1));
+				system("cls");
+			}
+
+		}
+		else{
+		system("cls");
+		std::cout << str2 << " is not a valid element" << std::endl;
+		Sleep(2000);
+		system("cls");
+		}
 	}
+	
 
 	//INFO
 	else if (str == "info" || str == "Info") {
@@ -121,7 +131,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		}
 		else {
 			system("cls");
-			std::cout << "You don't have this element in your own!" << std::endl;
+			std::cout << str2 << " is not a valid element" << std::endl;
 			Sleep(2000);
 			system("cls");
 		}
@@ -161,9 +171,13 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 			Sleep(2000);
 			system("cls");
 		}
-		else if ((a < elements.size() + 1) && (b < elements.size() + 1)) {
 
-		}
+		system("cls");
+	}
+	else {
+		system("cls");
+		std::cout << "Try another command!" << std::endl;
+		Sleep(2000);
 		system("cls");
 	}
 	std::cin.clear();
