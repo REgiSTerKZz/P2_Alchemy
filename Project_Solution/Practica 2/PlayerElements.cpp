@@ -66,8 +66,10 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	else if (str == "Add" || str == "add")
 	{
 		b = stoi(str2);
-		if (b>elements.size())
+		if (b > elements.size()){
 			std::cout << "You don't have this element in your own!" << std::endl;
+			Sleep(2000);
+		}
 		else {
 			b = stoi(str2);
 			addElements(elements[b - 1]);
@@ -78,9 +80,10 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	//DELETE
 	else if (str == "delete" || str == "Delete") {
 		b = stoi(str2);
-		if (b > elements.size())
+		if (b > elements.size()) {
 			std::cout << "You don't have this element in your own!" << std::endl;
-
+			Sleep(2000);
+		}
 		else {
 			elements.erase(elements.begin() + (b - 1));
 			system("cls");
@@ -94,7 +97,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 		if (b > elements.size()) {
 			system("cls");
 			std::cout << "You don't have this element in your own!" << std::endl;
-
+			Sleep(2000);
 		}
 		else {
 			std::string first = "https://es.wikipedia.org/wiki/";
@@ -125,14 +128,19 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 
 
 		//COMBINATION
-		for (auto it : A) {
-			if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
-				elements.erase(elements.begin() + (a - 1));
-				elements.erase(elements.begin() + (b - 2));
-				addElements(it.second);
-				puntuacion++;
-				break;
+		if ((a != b) && ( a < elements.size()+1) && ( b < elements.size()+1) ) {
+			for (auto it : A) {
+				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
+					elements.erase(elements.begin() + (a - 1));
+					elements.erase(elements.begin() + (b - 2));
+					addElements(it.second);
+					puntuacion++;
+					break;
+				}
 			}
+		}
+		else if ((a < elements.size() + 1) && (b < elements.size() + 1)) {
+
 		}
 		system("cls");
 	}
