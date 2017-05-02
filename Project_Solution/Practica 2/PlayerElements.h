@@ -17,7 +17,7 @@ private:
 	std::vector<std::string> elements;
 	int puntuacion;
 public:
-	
+
 	PlayerElements();
 	void PlayerElements::addElements(std::string A);
 	void PlayerElements::printElements();
@@ -26,4 +26,3 @@ public:
 	bool PlayerElements::getBool(bool &EndGame);
 	~PlayerElements();
 };
-
