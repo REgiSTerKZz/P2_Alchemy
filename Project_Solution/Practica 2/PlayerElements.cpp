@@ -184,13 +184,13 @@ bool PlayerElements::getBool(bool &EndGame) {
 
 void PlayerElements::Comandos() {
 	std::cout << "-------------------------------HELP-IN-COMING------------------------------ " << std::endl;
-	std::cout << "Escribe - Sort - para ordenar los elementos" << std::endl;
-	std::cout << "Escribe - Clean - para eliminar los elementos repetidos" << std::endl;
-	std::cout << "Escribe - Add - y un numero para agregar un elemento" << std::endl;
-	std::cout << "Escribe - Add basics - para añadir los 4 elementos basicos" << std::endl;
-	std::cout << "Escribe - Delete - y un numero para eliminar un elemento" << std::endl;
-	std::cout << "Escribe - Info - para tener informacion de un elemento" << std::endl;
-	std::cout << "Escribe - Help - para abrir este menú" << std::endl;
+	std::cout << "  Escribe -Sort-	Para ordenar los elementos" << std::endl;
+	std::cout << "  Escribe -Clean-	Para eliminar los elementos repetidos" << std::endl;
+	std::cout << "  Escribe -Add-		Y un numero para agregar un elemento" << std::endl;
+	std::cout << "  Escribe -Add basics-  Para añadir los 4 elementos basicos" << std::endl;
+	std::cout << "  Escribe -Delete-	Y un numero para eliminar un elemento" << std::endl;
+	std::cout << "  Escribe -Info-	Para tener informacion de un elemento" << std::endl;
+	std::cout << "  Escribe -Help-	Para abrir este menu" << std::endl;
 	std::cout << "--------------------------------------------------------------------------- " << std::endl;
 	std::cout << std::endl;
 }
