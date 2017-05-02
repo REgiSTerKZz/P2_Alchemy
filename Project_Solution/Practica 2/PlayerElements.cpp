@@ -12,51 +12,51 @@ PlayerElements::PlayerElements()
 	puntuacion = 0;																					// Inicialitza la variable puntuació a 0
 }
 
-void PlayerElements::addElements(std::vector<std::string> &Vec ,std::string A) {
-	Vec.insert(Vec.end(), A);
-	printElements();
+void PlayerElements::addElements(std::vector<std::string> &Vec ,std::string A) {					//Creem un atribut per afegir elements dins del vector
+	Vec.insert(Vec.end(), A);																		//Inserta l'element 
+	printElements();																				//Printa els elements
 }
 
-void PlayerElements::printElements() {
+void PlayerElements::printElements() {//Creem un atribut per printar els elements del vector
 
-	int i = 0;
-	std::cout << "PUNTUACION: " << "!" << puntuacion << "!" << std::endl;
-	for (auto it = elements.begin(); it != elements.end(); ++it) {		
+	int i = 0;																						//Declara una variable que utilitzarem per posar els numeros dels elements
+	std::cout << "PUNTUACION: " << "!" << puntuacion << "!" << std::endl;							//Imprimeix la puntuació
+	for (auto it = elements.begin(); it != elements.end(); ++it) {									//Printa el elements dels vector amb el seu numero	
 		std::cout << i + 1 << "-";
 		std::cout << elements[i] << std::endl;
 		i++;
 	}
 }
 
-void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::string>, std::string> A) {
-	std::string str, str2;
-	int a{ -1 };
-	int b{ -1 };
+void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::string>, std::string> A) { //Llegeix el que posa l'usuari 
+	std::string str, str2;	//Fem 2 strings el primer sera fins el espai i el segon per el text després de l'espai
+	int a;
+	int b;
 	std::cout << "Element : " << std::endl;
-	std::cin >> str;
+	std::cin >> str; //Guarda tot al primer string
 
-	getline(std::cin, str2);
-	std::size_t space = str2.find(" ");
-	str2 = str2.substr(space + 1);
+	getline(std::cin, str2);																		//treu del primer string el que hi ha des del primer espai fins al final 
+	std::size_t space = str2.find(" ");																//busca l'espai
+	str2 = str2.substr(space + 1);																	//treu l'espai
 
-	//SORT
+	//SORT																							//Comprova que el str sigui igual a "Sort"
 	if (str == "sort" || str == "Sort") {
-		sort(elements.begin(), elements.end());
+		sort(elements.begin(), elements.end());														//utilitzem la funció membre "Sort" de vector
 		system("cls");
 	}
 
 	//CLEAN
-	else if (str == "Clean" || str == "clean")
+	else if (str == "Clean" || str == "clean")														//Comprova que el str sigui igual a "Clean"
 	{
-		sort(elements.begin(), elements.end());
-		elements.erase(unique(elements.begin(), elements.end()), elements.end());
+		sort(elements.begin(), elements.end());														//utilitzem la funció membre "Sort" per ordenar i evitar un bucle que compari cada element amb la resta
+		elements.erase(unique(elements.begin(), elements.end()), elements.end());					//utilitzem la funció membre "unique y erase" per eliminar els elements repetits del vector
 		system("cls");
 	}
 
 	//ADD BASICS
-	else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics" || str2 == "basics " || str2 == "Basics ")
+	else if (str == "Add" || str == "add" && str2 == "basics" || str2 == "Basics")					//Comprova que el str sigui igual a "Add" i str2 sigui igual a "Basics"
 	{
-		addElements(elements, "Air");
+		addElements(elements, "Air");																//Afageix els 4 elements basics
 		addElements(elements, "Fire");
 		addElements(elements, "Earth");
 		addElements(elements, "Water");
@@ -64,22 +64,22 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	}
 
 	//ADD
-	else if (str == "Add" || str == "add")
+	else if (str == "Add" || str == "add")															//Comprova que el str sigui igual a "Add"
 	{
-		if (str[0] >= '0' && str2[0] <= '9') {
-			b = stoi(str2);
-			if (b > elements.size()) {
+		if (str2[0] >= '0' && str2[0] <= '9') {														//Si str2 es un numero fa un cast i podem trballar amb el numero posat
+			b = stoi(str2);														
+			if (b > elements.size()) {																//Si str2 es mes gran que el vector, imprimeix un missatge
 				std::cout << "You don't have this element in your own!" << std::endl;
 				Sleep(2000);
 			}
 
-			else {
+			else {																					//Si b esta dins del vector afegeix l'element
 				b = stoi(str2);
 				addElements(elements, elements[b - 1]);
 				system("cls");
 			}
 		}
-		else {
+		else {																						//Si str2 no es un numero imprimeix un missatge
 			system("cls");
 			std::cout << str2 << " is not a valid element" << std::endl;
 			Sleep(2000);
@@ -88,21 +88,21 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	}
 
 	//DELETE
-	else if (str == "delete" || str == "Delete") {
+	else if (str == "delete" || str == "Delete") {													//Comprova que el str sigui igual a "Delete"
 
-		if (str[0] >= '0' && str2[0] <= '9') {
+		if (str2[0] >= '0' && str2[0] <= '9') {														//Si str2 es un numero fa un cast i podem trballar amb el numero posat
 			b = stoi(str2);
-			if (b > elements.size()) {
+			if (b > elements.size()) {																//Si str2 es mes gran que el vector, imprimeix un missatge
 				std::cout << "You don't have this element in your own!" << std::endl;
 				Sleep(2000);
 			}
-			else {
+			else {																					//Si b esta dins del vector elimina l'element
 				elements.erase(elements.begin() + (b - 1));
 				system("cls");
 			}
 
 		}
-		else{
+		else{																						//Si str2 no es un numero imprimeix un missatge	
 		system("cls");
 		std::cout << str2 << " is not a valid element" << std::endl;
 		Sleep(2000);
@@ -113,7 +113,7 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 
 	//INFO
 	else if (str == "info" || str == "Info") {												// Comprova que el str sigui igual a "Info"
-		if (str[0] >= '0' && str2[0] <= '9') {												// en el cas que el segon element (str2) sigui igual a un nombre(int)
+		if (str2[0] >= '0' && str2[0] <= '9') {												// en el cas que el segon element (str2) sigui igual a un nombre(int)
 			b = stoi(str2);																	// Passa str2 de string a int i ho guarda a la variable b
 			if (b > elements.size()) {														// Si b és més gran que la mida del vector
 				system("cls");
@@ -138,22 +138,23 @@ void PlayerElements::InputPlayer(std::unordered_map<std::pair<std::string, std::
 	}
 	
 	//HELP
-	else if (str == "Help" || str == "help") {
+	else if (str == "Help" || str == "help") {												// Comprova que el str sigui igual a "Help"
 		system("cls");
-		PlayerElements::Comandos();
+		Comandos();																			//Crida l'atribut "Comandos"
 	}
 	
-	else if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))
+	else if ((str[0] >= '0' && str[0] <= '9') && (str2[0] >= '0' && str2[0] <= '9'))		//Si no es cap de les anterior y el primer element dels 2 strings es un numero fa un cast
 	{
-		a = stoi(str);
+		a = stoi(str);																		//pasa str i str2 a numero
 		b = stoi(str2);
 		//COMBINATION
-		if ((a != b) && ( a < elements.size()+1) && ( b < elements.size()+1) ) {
-			for (auto it : A) {
-				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) || (elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {
-					elements.erase(elements.begin() + (a - 1));
-					elements.erase(elements.begin() + (b - 2));
-					addElements(elements, it.second);
+		if ((a != b) && ( a < elements.size()+1) && ( b < elements.size()+1) ) {			//Si a es diferent de b i son mes petits de la mida del vector entra
+			for (auto it : A) {																//Bucle que va incrementant "it"
+				if ((elements[a - 1] == it.first.first) && (elements[b - 1] == it.first.second) ||
+					(elements[b - 1] == it.first.first) && (elements[a - 1] == it.first.second)) {//Si "a i b" o "b i a" son la key d'un element del mapa entra al if
+					elements.erase(elements.begin() + (a - 1));								//elimina a del vector
+					elements.erase(elements.begin() + (b - 2));								//elimina b del vector
+					addElements(elements, it.second);										//posa l'element de la posicion on "a i b" o "b i a" coincideixen
 					if (std::find(Puntua.begin(), Puntua.end(), it.second) != Puntua.end()) {
 						
 					}						
