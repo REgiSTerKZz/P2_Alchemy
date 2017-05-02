@@ -28,6 +28,12 @@ std::unordered_map<std::pair<std::string, std::string>, std::string> readElemets
 	return A;
 }
 
+void  InitialPrint() {															// Funció per imprimir el títol del joc "FULLENTI ALCHEMY"
+	std::cout << "--------------------------------------------------------------------------" << std::endl;
+	std::cout << "                           FULLENTI ALCHEMIST								" << std::endl;
+	std::cout << "--------------------------------------------------------------------------" << std::endl;
+				 
+}													
 
 int main()
 {
@@ -35,6 +41,7 @@ int main()
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mapa;	// Declara l'unordered_map que contindrà les possibles combinacions
 	readElemets(mapa);															// Llegeix i inicialitza l'unordered_map amb els valors d'elements.dat
 	PlayerElements Alchemy;														// Crea un objecte de la classe PlayerElements
+	InitialPrint();																// Printem el títol del joc "FULLENTI ALCHEMIST"
 	Alchemy.Comandos();															// Crida l'atribut de la classe Comandos(); per imprimir les instruccions
 	while (EndGame == true)														// Comença el bucle per mantenir el joc funcionant
 	{

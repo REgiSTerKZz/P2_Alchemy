@@ -204,7 +204,7 @@ bool PlayerElements::getBool(bool &EndGame) {														// Fem un bool per a 
 }
 
 void PlayerElements::Comandos() {																	// Atribut que imprimeix el missatges
-	std::cout << "------------------------------HELP-IN-COMING------------------------------ " << std::endl;
+	std::cout << "----------------------------HELP-IN-COMING-------------------------------- " << std::endl;
 	std::cout << "  Escribe -Sort-	Para ordenar los elementos" << std::endl;
 	std::cout << "  Escribe -Clean-	Para eliminar los elementos repetidos" << std::endl;
 	std::cout << "  Escribe -Add-		Y un numero para agregar un elemento" << std::endl;
